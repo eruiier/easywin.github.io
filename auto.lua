@@ -39,6 +39,16 @@ task.spawn(function()
 end)
 
 task.spawn(function()
+    task.wait(600) -- Wait for 10 minutes
+    local newTeleportTarget = Vector3.new(-351.57, 3, -49041.24)
+
+    if game.Players.LocalPlayer and game.Players.LocalPlayer.Character then
+        game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(newTeleportTarget))
+    end
+end)
+
+
+task.spawn(function()
     task.wait(600) -- Wait 10 minutes before executing the function
 
     local player = game.Players.LocalPlayer
