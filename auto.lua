@@ -47,6 +47,17 @@ task.spawn(function()
     end
 end)
 
+task.spawn(function()
+    task.wait(45) -- Wait for 45 seconds before connecting the event
+
+    local proxservice = game:GetService("ProximityPromptService")
+    proxservice.PromptShown:Connect(function(prox)
+        fireproximityprompt(prox)
+    end)
+end)
+
+
+
 
 task.spawn(function()
     task.wait(600) -- Wait 10 minutes before executing the function
