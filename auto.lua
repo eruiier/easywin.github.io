@@ -38,6 +38,21 @@ task.spawn(function()
     end
 end)
 
+task.spawn(function()
+    task.wait(600) -- Wait 10 minutes before executing the function
+
+    local player = game.Players.LocalPlayer
+    local camera = workspace.CurrentCamera
+    camera.CameraType = Enum.CameraType.Scriptable -- Sets camera to be controlled by script
+
+    local rotationSpeed = 3 -- Increased rotation speed
+
+    game:GetService("RunService").RenderStepped:Connect(function(deltaTime)
+        camera.CFrame = camera.CFrame * CFrame.Angles(0, math.rad(rotationSpeed), 0)
+    end)
+end)
+
+
 local teleportTarget = Vector3.new(147.79, 5.77, 29981.89)
 
 task.wait(5) -- Wait for 5 seconds
