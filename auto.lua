@@ -68,17 +68,26 @@ end)
 
 
 task.spawn(function()
-    task.wait(600) -- Wait 10 minutes before executing the function
+    task.wait(601) -- Start camera rotation after 601 seconds
 
     local player = game.Players.LocalPlayer
     local camera = workspace.CurrentCamera
-    camera.CameraType = Enum.CameraType.Scriptable -- Sets camera to be controlled by script
+    camera.CameraType = Enum.CameraType.Scriptable -- Enables script control
 
     local rotationSpeed = 3 -- Increased rotation speed
 
-    game:GetService("RunService").RenderStepped:Connect(function(deltaTime)
+    local cameraRotationConnection = game:GetService("RunService").RenderStepped:Connect(function(deltaTime)
         camera.CFrame = camera.CFrame * CFrame.Angles(0, math.rad(rotationSpeed), 0)
     end)
+
+    -- Stop the camera spin after 4 seconds
+    task.wait(3)
+    if cameraRotationConnection then
+        cameraRotationConnection:Disconnect()
+    end
+
+    -- Reset camera back to normal control
+    camera.CameraType = Enum.CameraType.Custom
 end)
 
 
