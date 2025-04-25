@@ -42,12 +42,16 @@ task.spawn(function()
     task.wait(10) -- Wait 10 seconds before starting the timer
 
     local Players = game:GetService("Players")
-    local StarterGui = game:GetService("StarterGui")
     local player = Players.LocalPlayer
+
+    -- Ensure player is loaded
+    while not player or not player:FindFirstChild("PlayerGui") do
+        task.wait()
+    end
 
     -- Create the ScreenGui
     local gui = Instance.new("ScreenGui")
-    gui.Parent = StarterGui
+    gui.Parent = player:WaitForChild("PlayerGui") -- Ensure it's added to PlayerGui
 
     -- Create the Frame
     local frame = Instance.new("Frame")
