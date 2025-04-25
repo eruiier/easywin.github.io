@@ -39,6 +39,76 @@ task.spawn(function()
 end)
 
 task.spawn(function()
+    task.wait(10) -- Wait 10 seconds before starting the timer
+
+    local Players = game:GetService("Players")
+    local StarterGui = game:GetService("StarterGui")
+    local player = Players.LocalPlayer
+
+    -- Create the ScreenGui
+    local gui = Instance.new("ScreenGui")
+    gui.Parent = StarterGui
+
+    -- Create the Frame
+    local frame = Instance.new("Frame")
+    frame.Size = UDim2.new(0, 200, 0, 100)
+    frame.Position = UDim2.new(0.5, -100, 0.1, 0) -- Centered
+    frame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+    frame.Parent = gui
+
+    -- Create the Timer Label
+    local timerLabel = Instance.new("TextLabel")
+    timerLabel.Size = UDim2.new(1, 0, 0.5, 0)
+    timerLabel.Position = UDim2.new(0, 0, 0, 0)
+    timerLabel.Text = "Timer: 0:00"
+    timerLabel.TextScaled = true
+    timerLabel.BackgroundTransparency = 1
+    timerLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+    timerLabel.Parent = frame
+
+    -- Create the Minimize Button
+    local minimizeButton = Instance.new("TextButton")
+    minimizeButton.Size = UDim2.new(1, 0, 0.5, 0)
+    minimizeButton.Position = UDim2.new(0, 0, 0.5, 0)
+    minimizeButton.Text = "Minimize"
+    minimizeButton.TextScaled = true
+    minimizeButton.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
+    minimizeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    minimizeButton.Parent = frame
+
+    -- Timer Function
+    local timeElapsed = 0
+    local running = true
+
+    task.spawn(function()
+        while running and timeElapsed < (15 * 60) do -- 15 minutes in seconds
+            task.wait(1) -- Wait 1 second
+            timeElapsed = timeElapsed + 1
+            
+            -- Convert seconds into MM:SS format
+            local minutes = math.floor(timeElapsed / 60)
+            local seconds = timeElapsed % 60
+            timerLabel.Text = string.format("Timer: %d:%02d", minutes, seconds)
+        end
+    end)
+
+    -- Minimize Button Functionality
+    local minimized = false
+    minimizeButton.MouseButton1Click:Connect(function()
+        minimized = not minimized
+        frame.Visible = not minimized
+
+        if minimized then
+            minimizeButton.Text = "Show Timer"
+        else
+            minimizeButton.Text = "Minimize"
+        end
+    end)
+end)
+
+
+
+task.spawn(function()
     task.wait(600) -- Wait for 10 minutes
     local newTeleportTarget = Vector3.new(-351.57, 3, -49041.24)
 
