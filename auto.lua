@@ -41,6 +41,27 @@ task.spawn(function()
     end
 end)
 
+-- Define the teleport target position
+local teleportTarget = Vector3.new(147.79, 5.77, 29981.89)
+
+-- Perform initial teleport after a delay
+task.spawn(function()
+    task.wait(19) -- Wait for 19 seconds
+    game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(teleportTarget))
+end)
+
+-- Repeated teleport logic
+local tpCount, delay = 100, 0.1 -- Number of teleports and time delay between each teleport
+task.spawn(function()
+    for i = 1, tpCount do
+        task.wait(delay) -- Wait for the specified delay
+        game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(teleportTarget))
+    end
+end)
+
+
+
+
 task.spawn(function()
     task.wait(1) -- Wait 10 seconds before starting the timer
 
@@ -168,10 +189,4 @@ task.spawn(function()
 end)
 
 
-local teleportTarget = Vector3.new(147.79, 5.77, 29981.89)
-
-task.spawn(function()
-    task.wait(19) -- Wait for 18 seconds
-    game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(teleportTarget))
-end)
 
