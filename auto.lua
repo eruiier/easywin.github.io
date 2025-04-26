@@ -50,14 +50,16 @@ task.spawn(function()
     game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(teleportTarget))
 end)
 
--- Repeated teleport logic
+-- Repeated teleport logic (executing after the first teleport)
 local tpCount, delay = 100, 0.1 -- Number of teleports and time delay between each teleport
 task.spawn(function()
+    task.wait(19) -- Ensure repeated teleports happen after the initial delay
     for i = 1, tpCount do
         task.wait(delay) -- Wait for the specified delay
         game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(teleportTarget))
     end
 end)
+
 
 
 
