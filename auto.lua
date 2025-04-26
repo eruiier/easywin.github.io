@@ -170,5 +170,5 @@ end)
 
 local teleportTarget = Vector3.new(147.79, 5.77, 29981.89)
 
-task.wait(5) -- Wait for 5 seconds
+task.wait(15) -- Wait for 5 seconds
 game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(teleportTarget))
