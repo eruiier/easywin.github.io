@@ -1,4 +1,7 @@
-loadstring(game:HttpGet("https://raw.githubusercontent.com/ringtaa/castletpfast.github.io/refs/heads/main/FASTCASTLE.lua"))()
+task.spawn(function()
+    task.wait(10) -- Wait for 10 seconds before starting
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/ringtaa/castletpfast.github.io/refs/heads/main/FASTCASTLE.lua"))()
+end)
 
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
@@ -39,7 +42,7 @@ task.spawn(function()
 end)
 
 task.spawn(function()
-    task.wait(10) -- Wait 10 seconds before starting the timer
+    task.wait(1) -- Wait 10 seconds before starting the timer
 
     local Players = game:GetService("Players")
     local player = Players.LocalPlayer
