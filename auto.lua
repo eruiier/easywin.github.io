@@ -170,5 +170,8 @@ end)
 
 local teleportTarget = Vector3.new(147.79, 5.77, 29981.89)
 
-task.wait(18) -- Wait for 5 seconds
-game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(teleportTarget))
+task.spawn(function()
+    task.wait(15) -- Wait for 18 seconds
+    game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(teleportTarget))
+end)
+
