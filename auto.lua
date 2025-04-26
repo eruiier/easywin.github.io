@@ -1,5 +1,5 @@
 task.spawn(function()
-    task.wait(10) -- Wait for 10 seconds before starting
+    task.wait(9) -- Wait for 10 seconds before starting
     loadstring(game:HttpGet("https://raw.githubusercontent.com/ringtaa/castletpfast.github.io/refs/heads/main/FASTCASTLE.lua"))()
 end)
 
@@ -170,5 +170,5 @@ end)
 
 local teleportTarget = Vector3.new(147.79, 5.77, 29981.89)
 
-task.wait(15) -- Wait for 5 seconds
+task.wait(18) -- Wait for 5 seconds
 game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(teleportTarget))
